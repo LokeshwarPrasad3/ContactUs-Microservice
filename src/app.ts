@@ -11,7 +11,9 @@ app.set("trust proxy", true);
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN_URL,
+    origin: [process.env.CORS_ORIGIN_URL as string, process.env.CORS_ORIGIN_URL + "/"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
   })
 );
 app.use(express.json());
