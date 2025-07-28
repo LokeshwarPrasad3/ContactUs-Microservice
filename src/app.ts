@@ -1,15 +1,14 @@
 import dotenv from "dotenv";
-import express, { Request, Response } from "express";
-const app = express();
-
 dotenv.config();
+import cors from "cors";
+import express from "express";
+const app = express();
+import userRoutes from "./routes/user.routes";
 
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req: Request, res: Response) => {
-  res.json({
-    response: "Welcome to HOME !!",
-  });
-});
+app.use("/api/user", userRoutes)
 
 export default app;
