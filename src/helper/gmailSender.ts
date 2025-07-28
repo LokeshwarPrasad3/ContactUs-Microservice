@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 const OWNER_GMAIL = process.env.OWNER_GMAIL as string;
 
 /**
@@ -16,29 +16,28 @@ export const gmailSender = async (
   try {
     // Create a transporter using Gmail
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: OWNER_GMAIL,
         pass: process.env.GMAIL_PASSKEY,
-      }
+      },
     });
 
     // Email options
     const mailOptions = {
       from: OWNER_GMAIL,
-      to: Array.isArray(userEmail) ? userEmail.join(',') : userEmail,
+      to: Array.isArray(userEmail) ? userEmail.join(",") : userEmail,
       subject: `${subject} 🚀`,
       bcc: process.env.ADMIN_GMAIL,
-      html: htmlContent
+      html: htmlContent,
     };
 
     // Send email
     await transporter.sendMail(mailOptions);
-    console.log('✅ Gmail sent to:', userEmail);
+    console.log("✅ Gmail sent to:", userEmail);
     return { success: true };
-
   } catch (err) {
-    console.error('❌ Gmail sending failed:', err);
+    console.error("❌ Gmail sending failed:", err);
     return { success: false, error: err };
   }
 };

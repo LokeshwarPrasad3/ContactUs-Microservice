@@ -36,7 +36,7 @@ export const sendMessageToAdmin = asyncHandler(async (req: Request, res: Respons
   if (!createUserMessage) {
     throw new ApiError(500, "Failed to send message");
   }
-  
+
   const emailSubject = "Thanks for contacting Budgetter";
   const templatePath = path.resolve(__dirname, "../../public/templates/FormSubmission.hbs");
   const source = fs.readFileSync(templatePath, "utf-8");
@@ -45,7 +45,7 @@ export const sendMessageToAdmin = asyncHandler(async (req: Request, res: Respons
 
   // Send by resend tool service
   // const { success } = await emailSender(email, emailSubject, htmlContent);
-  
+
   // Send by google gmail service
   const { success } = await gmailSender(email, emailSubject, htmlContent);
 
