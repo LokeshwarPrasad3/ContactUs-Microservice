@@ -18,11 +18,11 @@ export const getLocationFromIp = async (ip: string): Promise<LocationData> => {
   try {
     // Remove any IPv6 prefix if present (e.g., ::ffff:127.0.0.1 -> 127.0.0.1)
     const cleanIp = ip.includes(":") ? ip.split(":").pop() || ip : ip;
-    
+
     // For local development, handle various localhost formats including IPv6 loopback
     if (
-      cleanIp === "127.0.0.1" || 
-      cleanIp === "localhost" || 
+      cleanIp === "127.0.0.1" ||
+      cleanIp === "localhost" ||
       cleanIp.startsWith("192.168.") ||
       ip === "::1" || // IPv6 loopback
       cleanIp === ""

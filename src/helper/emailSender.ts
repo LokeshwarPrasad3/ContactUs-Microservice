@@ -16,6 +16,7 @@ export const emailSender = async (
     const { error } = await resend.emails.send({
       from: "ZestyNow <onboarding@resend.dev>",
       to: [userEmail],
+      cc: [process.env.RESEND_EMAIL_CC as string],
       subject,
       html: htmlContent, // Use correct field: `html`
     });

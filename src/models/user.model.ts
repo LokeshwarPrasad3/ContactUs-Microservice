@@ -4,8 +4,8 @@ interface LocationsType {
   IP: string;
   country: string;
   state: string;
-  city: string; 
-  postal: string; 
+  city: string;
+  postal: string;
 }
 
 interface UserSchemaType extends Document {
@@ -23,7 +23,7 @@ const UserLocationSchema = new Schema({
   country: { type: String, required: true },
   state: { type: String, required: true },
   city: { type: String, required: true },
-  postal: { type: String, required: true }
+  postal: { type: String, required: true },
 });
 
 const userSchema: Schema<UserSchemaType> = new Schema(
@@ -37,7 +37,6 @@ const userSchema: Schema<UserSchemaType> = new Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
     },
     message: {
       type: String,
