@@ -37,7 +37,7 @@ export const sendMessageToAdmin = asyncHandler(async (req: Request, res: Respons
     throw new ApiError(500, "Failed to send message");
   }
 
-  const emailSubject = "Thanks for contacting Budgetter";
+  const emailSubject = "Confirmation: We've received your message – Budgetter";
   const templatePath = path.resolve(__dirname, "../../public/templates/FormSubmission.hbs");
   const source = fs.readFileSync(templatePath, "utf-8");
   const template = handlebars.compile(source);
@@ -53,9 +53,7 @@ export const sendMessageToAdmin = asyncHandler(async (req: Request, res: Respons
     throw new ApiError(500, "Failed to send message");
   }
 
-  return res
-    .status(200)
-    .json(new ApiResponse(200, createUserMessage, "Message sent successfully !"));
+  return res.status(200).json(new ApiResponse(200, null, "Message sent successfully !"));
 });
 
 export const getAllMessagesOfUsers = asyncHandler(async (req: Request, res: Response) => {
